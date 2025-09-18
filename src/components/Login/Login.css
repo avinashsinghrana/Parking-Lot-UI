@@ -184,7 +184,10 @@
 }
 
 .login-logo {
-  display: none;
+  display: block;
+  margin: 0 auto 0.5rem auto;
+  width: 100px;
+  height: 100px;
 }
 
 .benefits-overlay {
@@ -219,4 +222,74 @@
   margin-bottom: 0.4rem;
   font-size: 1.05rem;
   line-height: 1.5;
+}
+
+.forgot-password-link {
+  display: block;
+  margin: 0.5rem auto 0 auto;
+  text-align: center;
+  color: #a57b0a;
+  font-size: 0.98rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.forgot-password-link:hover {
+  color: #fece34;
+  text-decoration: underline;
+}
+
+.otp-input {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  text-align: center;
+  border: 1px solid #a57b0a;
+  border-radius: 6px;
+  outline: none;
+  font-family: 'Playfair Display', 'Times New Roman', serif;
+  margin-right: 0.5rem;
+}
+.otp-input:last-child {
+  margin-right: 0;
+}
+
+.otp-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.send-otp-btn, .verify-otp-btn, .save-btn {
+  background: #a57b0a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.8rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 0.5rem;
+  width: 100%;
+  display: block;
+}
+.send-otp-btn:disabled, .verify-otp-btn:disabled, .save-btn:disabled {
+  background: #ccc;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+/* Ensure new/confirm password fields look like login fields */
+.input-group input[type="password"] {
+  /* Remove font-family override so it matches the email/ID field */
+}
+
+.error-msg {
+  color: red;
+  margin-top: 0;
+  margin-bottom: 1px;
+  font-size: 0.7rem;
+  /* Optionally, add padding or font-weight if needed */
 }

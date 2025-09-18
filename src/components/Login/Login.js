@@ -4,13 +4,13 @@ import { FaUser, FaLock } from 'react-icons/fa';
 import parkingLot from '../../parkinglot.jpg';
 import logo from '../../logo.svg';
 
-const Login = () => {
+const Login = (props) => {
   return (
     <div className="login-outer-container">
       <div className="login-header">
         <div className="header-logo-title">
           <img src={logo} alt="Logo" className="header-logo" />
-          <span className="header-title">Parking Lot</span>
+          <span className="header-title">Parking</span>
         </div>
         <div className="header-buttons">
           <button className="admin-btn">Admin Portal</button>
@@ -43,6 +43,7 @@ const Login = () => {
               <input type="password" placeholder="Password" required />
             </div>
             <button type="submit" className="login-btn">Login</button>
+            <a href="/forget/password" className="forgot-password-link">Forgot password?</a>
           </form>
         </div>
       </div>
