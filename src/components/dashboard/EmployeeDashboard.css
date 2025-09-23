@@ -1,0 +1,144 @@
+.employee-dashboard-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(25, 118, 210, 0.09);
+  padding: 2rem;
+}
+.employee-info {
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+}
+.employee-dashboard-content {
+  max-width: 1100px;
+  margin: 40px auto 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 2rem 2.5rem 2.5rem 2.5rem;
+}
+.employee-dashboard-main-content {
+  margin-left: 220px;
+  padding: 2rem 2.5rem 2.5rem 2.5rem;
+  width: 100%;
+  min-height: 100vh;
+  background: #f7f9fc;
+}
+.employee-dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  font-size: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+.parking-lot-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  font-size: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+.employee-dashboard-table th, .employee-dashboard-table td {
+  padding: 0.9rem 0.7rem;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+.employee-dashboard-table th {
+  background: #f3e6c2;
+  color: #1976d2;
+  font-weight: bold;
+  font-size: 1.08rem;
+}
+.employee-dashboard-table th:last-child,
+.employee-dashboard-table td:last-child {
+  text-align: center;
+}
+.employee-dashboard-table tr:last-child td {
+  border-bottom: none;
+}
+.employee-dashboard-table tr:nth-child(even) {
+  background: #faf7e2;
+}
+.approve-btn {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1.05rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.approve-btn:hover {
+  background: #63a4ff;
+  color: #222;
+}
+.lock-btn, .exit-btn {
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
+  padding: 0.4rem 0;
+  margin-right: 0.7rem;
+  display: inline-block;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 0.98rem;
+}
+.exit-btn {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1.05rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.exit-btn:hover {
+  background: #63a4ff;
+  color: #222;
+}
+.exit-btn:disabled, .lock-btn:disabled {
+  background: #e0e0e0;
+  color: #888;
+  cursor: not-allowed;
+}
+.exit-popup-card {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, 0);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(25, 118, 210, 0.13);
+  padding: 1.5rem 2rem;
+  min-width: 260px;
+  max-width: 320px;
+  z-index: 999;
+  border: 1.2px solid #e0e0e0;
+  text-align: left;
+}
+.exit-popup-title {
+  font-size: 1.08rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  text-align: center;
+}
+.exit-popup-detail {
+  font-size: 0.98rem;
+  margin-bottom: 0.5rem;
+}
+.confirm-exit-btn {
+  display: block;
+  margin: 1rem auto 0 auto;
+  font-size: 0.98rem;
+  padding: 0.4rem 1.2rem;
+}

@@ -5,7 +5,10 @@
 }
 
 .login-header {
-  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
   height: 54px; /* Reduced height */
   display: flex;
   align-items: center;
@@ -15,20 +18,19 @@
   background: #fff;
   box-sizing: border-box;
   padding: 0 1.2rem; /* Reduced padding */
-  position: relative;
-  z-index: 2;
+  z-index: 200;
 }
 
 .header-logo {
-  height: 45px; /* Reduced size */
+  height: 36px; /* Reduced logo size */
   width: auto;
-  margin-left: 8px; /* Reduced margin */
+  margin-left: 1px; /* Reduced left margin */
 }
 
 .header-logo-title {
   display: flex;
   align-items: center;
-  gap: 8px; /* Reduced gap */
+  gap: 4px; /* Reduced gap between hamburger and logo */
 }
 
 .header-title {
@@ -292,4 +294,43 @@
   margin-bottom: 1px;
   font-size: 0.7rem;
   /* Optionally, add padding or font-weight if needed */
+}
+
+.user-circle {
+  width: 38px;
+  height: 38px;
+  background: #a57b0a;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-left: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  cursor: default;
+  user-select: none;
+  letter-spacing: 1px;
+}
+
+.header-hamburger {
+  background: none;
+  border: none;
+  color: #a57b0a; /* logo color theme */
+  font-size: 1.7rem; /* Slightly smaller icon */
+  cursor: pointer;
+  margin-right: -0.8rem; /* Reduced margin between hamburger and logo */
+  padding: 0.1rem 0.4rem; /* Slightly smaller padding */
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+.header-hamburger:hover {
+  background: #f5e3b0; /* subtle highlight from logo theme */
+  color: #a57b0a;
+}
+
+/* Ensure content below header is not hidden */
+body, #root {
+  padding-top: 54px;
 }

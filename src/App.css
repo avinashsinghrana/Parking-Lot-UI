@@ -46,3 +46,11 @@
         transform: scale(1.2);
     }
 }
+
+.main-content {
+  margin-top: 54px; /* height of header */
+  min-height: calc(100vh - 54px);
+  width: 100vw;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
