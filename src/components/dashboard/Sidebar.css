@@ -19,10 +19,33 @@
   width: 82px !important;
 }
 
+/* Parking lot name styles */
+.parking-lot-name {
+  padding: 1.2rem 1.5rem 0.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.parking-lot-name-full {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffebb3;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.parking-lot-name-short {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #ffebb3;
+  letter-spacing: 1px;
+}
+
 .sidebar-nav {
   display: flex;
   flex-direction: column;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
 }
 
 .sidebar-nav a {

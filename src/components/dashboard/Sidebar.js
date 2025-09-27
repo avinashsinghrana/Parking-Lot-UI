@@ -7,6 +7,7 @@ import { ReactComponent as ParkingStatusIcon } from './icons/ParkingStatusIcon.s
 import { ReactComponent as ParkingBookingIcon } from './icons/ParkingBookingIcon.svg';
 import { ReactComponent as SubscriptionIcon } from './icons/SubscriptionIcon.svg';
 import { ReactComponent as LostComplaintIcon } from './icons/LostComplaintIcon.svg';
+import { CredentialStore } from '../Login/Login';
 import './Sidebar.css';
 
 const sidebarOptions = [
@@ -22,14 +23,27 @@ const sidebarOptions = [
 const Sidebar = ({ collapsed }) => {
   const location = useLocation();
   const currentPath = location.pathname;
+  const parkingLotName = CredentialStore.parkingLot || 'GNIOT PARKING';
+
+  // Function to get initials for collapsed sidebar view
+  const getInitials = (name) => {
+    return name.split(' ').map(word => word[0]).join('');
+  };
 
   return (
     <div className={`sidebar-container${collapsed ? ' collapsed' : ''}`}>
+      {/* Parking lot name display */}
+      <div className="parking-lot-name">
+        {!collapsed ? (
+          <div className="parking-lot-name-full">{parkingLotName}</div>
+        ) : (
+          <div className="parking-lot-name-short">{getInitials(parkingLotName)}</div>
+        )}
+      </div>
+
       <nav className="sidebar-nav">
         {sidebarOptions.map(({ to, icon: Icon, label, circle, exact }) => {
           // Check if current route matches this sidebar item
-          // For the Dashboard (root path), only match exactly "/employee-dashboard" or "/employee-dashboard/"
-          // For other items, match their exact paths
           let isActive = false;
 
           if (exact) {

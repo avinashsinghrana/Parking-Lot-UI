@@ -7,8 +7,9 @@ import { useNavigate } from 'react-router-dom';
 
 // Mock employee credentials
 const EMPLOYEE_CREDENTIALS = [
-  { username: 'user', password: 'pwd', employeeId: 'EMP001', name: 'John Doe' },
-  { username: 'user1', password: 'pass456', employeeId: 'EMP002', name: 'Jane Smith' },
+  { username: 'user', password: 'pwd', employeeId: 'EMP001', name: 'John Doe', parkingLot: 'GNIOT' },
+  { username: 'user1', password: 'pwd', employeeId: 'EMP002', name: 'Jane Smith', parkingLot: 'Mall Of India' },
+  { username: 'laxmi', password: 'laxmi', employeeId: 'LX08686', name: 'Laxmi Singh', parkingLot: 'Candor Parking' },
   // Add more employees as needed
 ];
 
@@ -17,16 +18,24 @@ export class CredentialStore {
   static username = '';
   static password = '';
   static employeeId = '';
+  static parkingLot = '';
   static name = '';
 
-  static setCredentials(username, password, employeeId = '', name = '') {
+  static setCredentials(username, password, employeeId = '', name = '', parkingLot = '') {
     CredentialStore.username = username;
     CredentialStore.password = password;
     CredentialStore.employeeId = employeeId;
+    CredentialStore.parkingLot = parkingLot;
     CredentialStore.name = name;
     // Persist to localStorage so state survives refresh
     try {
-      localStorage.setItem('employeeCredentials', JSON.stringify({ username, password, employeeId, name }));
+      localStorage.setItem('employeeCredentials', JSON.stringify({
+        username,
+        password,
+        employeeId,
+        name,
+        parkingLot
+      }));
     } catch (e) {
       // ignore storage errors
     }
@@ -36,11 +45,12 @@ export class CredentialStore {
     try {
       const data = localStorage.getItem('employeeCredentials');
       if (data) {
-        const { username, password, employeeId, name } = JSON.parse(data);
+        const { username, password, employeeId, name, parkingLot } = JSON.parse(data);
         CredentialStore.username = username || '';
         CredentialStore.password = password || '';
         CredentialStore.employeeId = employeeId || '';
         CredentialStore.name = name || '';
+        CredentialStore.parkingLot = parkingLot || '';
       }
     } catch (e) {
       // ignore parse errors
@@ -52,6 +62,7 @@ export class CredentialStore {
     CredentialStore.password = '';
     CredentialStore.employeeId = '';
     CredentialStore.name = '';
+    CredentialStore.parkingLot = '';
     try {
       localStorage.removeItem('employeeCredentials');
     } catch (e) {
@@ -100,7 +111,17 @@ const Login = () => {
             const password = e.target.elements.password.value;
             const found = EMPLOYEE_CREDENTIALS.find(emp => emp.username === username && emp.password === password);
             if (found) {
-              CredentialStore.setCredentials(username, password, found.employeeId, found.name);
+              // Clear previous credentials first to refresh the cache
+              CredentialStore.clear();
+
+              // Then set the new credentials
+              CredentialStore.setCredentials(
+                username,
+                password,
+                found.employeeId,
+                found.name,
+                found.parkingLot
+              );
               setError('');
               navigate('/employee-dashboard'); // Redirect to employee dashboard
             } else {

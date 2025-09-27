@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import logo from '../logo.svg';
 import { useNavigate } from 'react-router-dom';
+import { CredentialStore } from './Login/Login';
 
 const Header = ({ showAdmin = true, showRegister = true, showEmployee = false, showBack = false, user, onHamburgerClick }) => {
   const navigate = useNavigate();
@@ -29,7 +30,9 @@ const Header = ({ showAdmin = true, showRegister = true, showEmployee = false, s
   }, [showUserPopup]);
 
   const handleLogout = () => {
-    // Optionally clear session here
+    // Clear credentials and local cache
+    CredentialStore.clear();
+    // Navigate to login page
     navigate('/login');
   };
 
