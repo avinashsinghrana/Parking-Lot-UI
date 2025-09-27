@@ -176,6 +176,16 @@ const LostComplaint = ({ sidebarCollapsed }) => {
   const [search, setSearch] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage] = useState(10); // Fixed at exactly 10 rows per page
+  const [showComplaintForm, setShowComplaintForm] = useState(false); // State for complaint form popup
+  const [complaintData, setComplaintData] = useState({ // State for complaint form data
+    vehicleNumber: '',
+    vehicleType: 'Car',
+    itemLost: '',
+    description: '',
+    value: 0,
+    priority: 'Medium'
+  });
+  const [formErrors, setFormErrors] = useState({}); // State for form validation errors
 
   // Filter complaints based on search (complaint ID, employee name, or vehicle number)
   const filteredComplaints = MOCK_COMPLAINTS.filter(complaint =>
@@ -234,6 +244,43 @@ const LostComplaint = ({ sidebarCollapsed }) => {
     }
   };
 
+  // Handle complaint form input change
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setComplaintData(prevData => ({ ...prevData, [name]: value }));
+  };
+
+  // Validate complaint form
+  const validateForm = () => {
+    const errors = {};
+    if (!complaintData.vehicleNumber) errors.vehicleNumber = 'Vehicle number is required';
+    if (!complaintData.itemLost) errors.itemLost = 'Item lost is required';
+    if (!complaintData.description) errors.description = 'Description is required';
+    if (complaintData.value <= 0) errors.value = 'Value must be greater than 0';
+    return errors;
+  };
+
+  // Submit complaint form
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const errors = validateForm();
+    setFormErrors(errors);
+    if (Object.keys(errors).length === 0) {
+      // Here you would typically handle the form submission, e.g., send data to server
+      console.log('Complaint lodged:', complaintData);
+      // Reset form
+      setComplaintData({
+        vehicleNumber: '',
+        vehicleType: 'Car',
+        itemLost: '',
+        description: '',
+        value: 0,
+        priority: 'Medium'
+      });
+      setShowComplaintForm(false); // Close form
+    }
+  };
+
   return (
     <div className={`parking-history-container ${sidebarCollapsed ? 'collapsed' : 'expanded'}`}>
       <h2 className="parking-history-title">Lost Complaint</h2>
@@ -247,6 +294,11 @@ const LostComplaint = ({ sidebarCollapsed }) => {
             onChange={e => setSearch(e.target.value)}
             className="parking-history-search-input"
           />
+        </div>
+        <div className="button-container">
+          <button className="check-in-btn" onClick={() => setShowComplaintForm(true)}>
+            Lodge Complaint
+          </button>
         </div>
       </div>
       <div className="table-wrapper">
@@ -296,6 +348,101 @@ const LostComplaint = ({ sidebarCollapsed }) => {
           Next
         </button>
       </div>
+      {/* Complaint Form Modal */}
+      {showComplaintForm && (
+        <>
+          <div className="exit-popup-overlay" onClick={() => setShowComplaintForm(false)}></div>
+          <div className="exit-popup-card logo-theme" style={{ maxWidth: '600px' }}>
+            <span className="exit-popup-close" onClick={() => setShowComplaintForm(false)} title="Close">&#10005;</span>
+            <div className="exit-popup-title">Lodge a New Complaint</div>
+            <div className="check-in-form">
+              <div className="form-field">
+                <label htmlFor="vehicle-number" className="form-label">Vehicle Number:</label>
+                <input
+                  type="text"
+                  id="vehicle-number"
+                  name="vehicleNumber"
+                  className="form-input"
+                  value={complaintData.vehicleNumber}
+                  onChange={(e) => {
+                    const value = e.target.value.toUpperCase();
+                    setComplaintData({ ...complaintData, vehicleNumber: value });
+                  }}
+                />
+                {formErrors.vehicleNumber && (
+                  <div className="form-error">{formErrors.vehicleNumber}</div>
+                )}
+              </div>
+              <div className="form-field">
+                <label htmlFor="item-lost" className="form-label">Item Lost:</label>
+                <input
+                  type="text"
+                  id="item-lost"
+                  name="itemLost"
+                  className="form-input"
+                  value={complaintData.itemLost}
+                  onChange={handleInputChange}
+                />
+                {formErrors.itemLost && (
+                  <div className="form-error">{formErrors.itemLost}</div>
+                )}
+              </div>
+
+              <div className="form-field">
+                <label htmlFor="value" className="form-label">Estimated Value (₹):</label>
+                <input
+                  type="number"
+                  id="value"
+                  name="value"
+                  className="form-input"
+                  value={complaintData.value}
+                  onChange={handleInputChange}
+                />
+                {formErrors.value && (
+                  <div className="form-error">{formErrors.value}</div>
+                )}
+              </div>
+
+              <div className="form-field">
+                <label htmlFor="priority" className="form-label">Priority:</label>
+                <select
+                  id="priority"
+                  name="priority"
+                  className="form-select"
+                  value={complaintData.priority}
+                  onChange={handleInputChange}
+                >
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                </select>
+              </div>
+
+              <div className="form-field">
+                <label htmlFor="description" className="form-label">Description:</label>
+                <textarea
+                  id="description"
+                  name="description"
+                  className="form-textarea"
+                  rows="4"
+                  value={complaintData.description}
+                  onChange={handleInputChange}
+                  placeholder="Please provide details about the lost item and where you think it might have been lost"
+                ></textarea>
+                {formErrors.description && (
+                  <div className="form-error">{formErrors.description}</div>
+                )}
+              </div>
+            </div>
+            <button
+              className="confirm-exit-btn"
+              onClick={handleSubmit}
+            >
+              Submit Complaint
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };

@@ -193,6 +193,18 @@ const EmployeeDashboard = () => {
         SUV: 30
     });
 
+    // Function to refresh available slots
+    const refreshAvailableSlots = () => {
+        // In a real application, this would make an API call to get the latest counts
+        // For demo purposes, we'll simulate this with random numbers
+        setAvailableSlots({
+            Car: Math.floor(Math.random() * 30) + 20, // Random number between 20-50
+            Bike: Math.floor(Math.random() * 40) + 50, // Random number between 50-90
+            Truck: Math.floor(Math.random() * 10) + 5,  // Random number between 5-15
+            SUV: Math.floor(Math.random() * 20) + 15   // Random number between 15-35
+        });
+    };
+
     // Add form validation state
     const [formErrors, setFormErrors] = useState({});
 
@@ -686,12 +698,41 @@ const EmployeeDashboard = () => {
                                                     </div>
                                                     <div className="form-field" style={{ flex: 1, textAlign: 'right' }}>
                                                         <label className="form-label"><b>Available Slots:</b></label>
-                                                        <span className="form-value" style={{
-                                                            color: availableSlots[checkInData.vehicleType] < 10 ? '#d32f2f' : '#28a745',
-                                                            fontWeight: 'bold'
-                                                        }}>
-                                                            {availableSlots[checkInData.vehicleType] || 0}
-                                                        </span>
+                                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                                                            <span className="form-value" style={{
+                                                                color: availableSlots[checkInData.vehicleType] < 10 ? '#d32f2f' : '#28a745',
+                                                                fontWeight: 'bold'
+                                                            }}>
+                                                                {availableSlots[checkInData.vehicleType] || 0}
+                                                            </span>
+                                                            <button
+                                                                className="refresh-slots-btn"
+                                                                onClick={(e) => {
+                                                                    e.preventDefault(); // Prevent form submission
+                                                                    refreshAvailableSlots();
+                                                                }}
+                                                                title="Refresh available slots"
+                                                                style={{
+                                                                    marginLeft: '5px',
+                                                                    background: 'transparent',
+                                                                    border: 'none',
+                                                                    cursor: 'pointer',
+                                                                    display: 'inline-flex',
+                                                                    alignItems: 'center',
+                                                                    justifyContent: 'center',
+                                                                    width: '24px',
+                                                                    height: '24px',
+                                                                    borderRadius: '50%',
+                                                                    padding: 0
+                                                                }}
+                                                            >
+                                                                <span style={{
+                                                                    color: '#a57b0a',
+                                                                    fontSize: '16px',
+                                                                    fontWeight: 'bold'
+                                                                }}>↻</span>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

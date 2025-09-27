@@ -1,349 +1,185 @@
-.employee-dashboard-container {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  background: #fff;
-  border-radius: 12px;
-  /*box-shadow: 0 2px 12px rgba(25, 118, 210, 0.09);*/
-  padding: 2rem 35px;
-}
-.employee-info {
-  font-size: 1rem;
-  margin-bottom: -0.8rem;
-  margin-top: -16px;
-  color: #a57b0a;
-}
-.employee-dashboard-content {
-  max-width: 1100px;
-  margin: 40px auto 0 auto;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-  padding: 2rem 2.5rem 2.5rem 2.5rem;
-}
-.employee-dashboard-main-content {
-  margin-left: 220px;
-  padding: 2rem 2.5rem 2.5rem 2.5rem;
-  width: 100%;
-  min-height: 100vh;
-  background: #f7f9fc;
-}
-.employee-dashboard-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #fff;
-  font-size: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-  overflow: hidden;
-  border: 2px solid #a57b0a;
-}
-.table-expanded-sidebar {
-  width: calc(100vw - 200px - 48px);
-  max-width: 80%;
-  margin: 0px auto 0rem 2rem;
-}
-.table-collapsed-sidebar {
-  width: calc(100vw - 56px - 24px);
-  max-width: 96vw;
-  margin: 0px auto 0rem 0.5rem;
-}
-.parking-lot-table {
-  width: calc(100vw - 48px);
-  max-width: 80%;
-  margin: 0px auto 0rem 0rem;
-  border-collapse: separate;
-  border-spacing: 0;
-  background: #fff;
-  font-size: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(165, 123, 10, 0.13);
-  overflow: hidden;
-  border: 2px solid #a57b0a;
-}
-.employee-dashboard-table th, .employee-dashboard-table td, .parking-lot-table th, .parking-lot-table td {
-  padding: 0.9rem 0.7rem;
-  border-bottom: 1px solid #eee;
-  text-align: left;
-}
-.employee-dashboard-table th, .parking-lot-table th {
-  background: #f3e6c2;
-  color: #1976d2;
-  font-weight: bold;
-  font-size: 1.08rem;
-}
-.parking-lot-table th {
-  background: linear-gradient(90deg, #f3e6c2 0%, #ffe9b3 100%);
-  color: #a57b0a;
-  font-weight: bold;
-  font-size: 1.08rem;
-  border-bottom: 2px solid #a57b0a;
-}
-.employee-dashboard-table td, .parking-lot-table td {
-  background: #fff;
-  color: #222;
-  border-bottom: 1px solid #eee;
-  transition: background 0.2s;
-}
-.parking-lot-table tr:nth-child(even) td {
-  background: #faf7e2;
-}
-.parking-lot-table tr:hover td {
-  background: #fffbe6;
-}
-.employee-dashboard-table th:last-child,
-.employee-dashboard-table td:last-child,
-.parking-lot-table th:last-child,
-.parking-lot-table td:last-child {
-  text-align: center;
-}
-.employee-dashboard-table tr:last-child td,
-.parking-lot-table tr:last-child td {
-  border-bottom: none;
-}
-.employee-dashboard-table tr:nth-child(even),
-.parking-lot-table tr:nth-child(even) {
-  background: #faf7e2;
-}
-.approve-btn {
-  background: #1976d2;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 0.7rem 1.5rem;
-  font-size: 1.05rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.approve-btn:hover {
-  background: #63a4ff;
-  color: #222;
-}
-.lock-btn {
-  background: #d32f2f;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 0.98rem;
-  cursor: pointer;
-  transition: background 0.2s;
-  width: 100px;
-  min-width: 100px;
-  max-width: 100px;
-  padding: 0.4rem 0;
-  margin-right: 0.7rem;
-  display: inline-block;
-  text-align: center;
-}
-.lock-btn:hover {
-  background: #b71c1c;
-}
-.lock-btn:disabled {
-  background: #e0e0e0;
-  color: #888;
-  cursor: not-allowed;
-}
-.exit-btn {
-  background: #a57b0a;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 0.98rem;
-  cursor: pointer;
-  transition: background 0.2s;
-  width: 100px;
-  min-width: 100px;
-  max-width: 100px;
-  padding: 0.4rem 0;
-  margin-right: 0.7rem;
-  display: inline-block;
-  text-align: center;
-}
-.exit-btn:hover {
-  background: #c9a63a;
-}
-.exit-btn:disabled {
-  background: #e0e0e0;
-  color: #888;
-  cursor: not-allowed;
-}
-.exit-popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(40, 30, 10, 0.45);
-  z-index: 998;
-}
-.exit-popup-card.logo-theme {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: #fffbe6;
-  border-radius: 18px;
-  box-shadow: 0 8px 32px rgba(165, 123, 10, 0.18);
-  border: 2.5px solid #a57b0a;
-  min-width: 320px;
-  max-width: 400px;
-  padding: 2.2rem 2.2rem 2rem 2.2rem;
-  z-index: 999;
-  text-align: left;
-}
-.exit-popup-close {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  font-size: 1.6rem;
-  color: #a57b0a;
-  cursor: pointer;
-  font-weight: bold;
-  background: none;
-  border: none;
-  z-index: 1001;
-  transition: color 0.2s;
-}
-.exit-popup-close:hover {
-  color: #d4b13a;
-}
-.exit-popup-title {
-  font-size: 1.18rem;
-  font-weight: 700;
-  margin-bottom: 1.1rem;
-  text-align: center;
-  color: #a57b0a;
-}
-.exit-popup-detail {
-  font-size: 1.05rem;
-  margin-bottom: 0.7rem;
-  color: #222;
-}
-.exit-popup-details-vertical {
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-  align-items: flex-start;
-  margin-bottom: 1.2rem;
-}
-.exit-popup-details-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  margin-bottom: 1.2rem;
-}
-.exit-popup-details-table td {
-  padding: 0.6rem 0.7rem;
-  font-size: 1.05rem;
-  color: #222;
-  background: transparent;
-  border: none;
-}
-.exit-popup-detail-label {
-  color: #a57b0a;
-  font-weight: bold;
-  width: 50%;
-  background: transparent;
-}
-.exit-popup-detail-value {
-  color: #222;
-  width: 50%;
-  background: transparent;
-}
-.confirm-exit-btn {
-  display: block;
-  margin: 1.2rem auto 0 auto;
-  font-size: 1.05rem;
-  padding: 0.6rem 0.5rem;
-  border-radius: 6px;
-  background: #a57b0a;
-  color: #fff;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.confirm-exit-btn:hover {
-  background: #c9a63a;
-  color: #222;
-}
-.exit-popup-payment-method {
-  margin-bottom: 1.2rem;
-  display: flex;
-  margin-left: 12px;
-  align-items: center;
-  gap: 0.3rem;
-}
-.exit-popup-payment-dropdown {
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  border: 2px solid #a57b0a;
-  background: #fffbe6;
-  color: #a57b0a;
-  font-size: 1.05rem;
-  font-weight: bold;
-  outline: none;
-  transition: border 0.2s;
-}
-.exit-popup-payment-dropdown:focus {
-  border-color: #d4b13a;
-}
-.exit-popup-qr-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 128px;
-  height: 128px;
-  margin: 0 auto;
-}
-.exit-popup-qr-code {
-  width: 128px;
-  height: 128px;
-  display: block;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(165, 123, 10, 0.13);
-  background: #fffbe6;
-  padding: 8px;
-}
-.exit-popup-qr-logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 40px;
-  height: 40px;
-  transform: translate(-50%, -50%);
-  border-radius: 8px;
-  background: #fffbe6;
-  box-shadow: 0 1px 4px rgba(165, 123, 10, 0.10);
-  object-fit: contain;
-  pointer-events: none;
-  display: block;
-}
-.exit-popup-qr-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin-bottom: 1.2rem;
-}
+/* EmployeeDashboard.css */
 .dashboard-title {
-  color: #a57b0a;
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 1.8rem;
-  margin-top: 0rem;
-  text-align: left;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
 }
-/* New styles for dashboard subtitle */
+
+.employee-info {
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
 .dashboard-subtitle {
-  color: #a57b0a;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+.dashboard-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.check-in-btn, .subscription-btn {
+  background-color: #a57b0a;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
   font-weight: bold;
-  margin: 1.5rem 0 1rem 0;
-  text-align: left;
+  transition: background-color 0.2s;
+}
+
+.check-in-btn:hover, .subscription-btn:hover {
+  background-color: #8a670c;
+}
+
+.locked-vehicle-row {
+  background-color: #ffeded !important;
+}
+
+/* Lock button styling */
+.lock-btn {
+  background-color: #e0a800;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.lock-btn:hover {
+  background-color: #c69500;
+}
+
+.lock-btn:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+/* Exit button styling */
+.exit-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.exit-btn:hover {
+  background-color: #218838;
+}
+
+.exit-btn:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+/* Details button styling */
+.details-btn {
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.details-btn:hover {
+  background-color: #138496;
+}
+
+/* Unlock button styling */
+.unlock-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 15px;
+  font-weight: 500;
+}
+
+.unlock-btn:hover {
+  background-color: #c82333;
+}
+
+/* Lock reason display */
+.lock-reason-display {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.lock-reason-title {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.lock-reason-text {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Character counter */
+.char-counter {
+  text-align: right;
+  margin-top: 5px;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.counter-error {
+  color: #dc3545;
+}
+
+/* Form textarea */
+.form-textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ced4da;
+  resize: vertical;
+}
+
+/* Refresh button for available slots */
+.refresh-slots-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 5px;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.refresh-slots-btn:hover {
+  background-color: #f0f0f0;
+}
+
+/* Refresh icon styling */
+.refresh-slots-btn i {
+  color: #a57b0a;
+  font-size: 14px;
+}
+
+/* Spinning animation for the refresh icon */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.refresh-slots-btn:active i {
+  animation: spin 0.5s linear;
 }
