@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import logo from '../logo.svg';
 import { useNavigate } from 'react-router-dom';
 
-const Header = ({ showAdmin = true, showRegister = true, showEmployee = false, showBack = false, user }) => {
+const Header = ({ showAdmin = true, showRegister = true, showEmployee = false, showBack = false, user, onHamburgerClick }) => {
   const navigate = useNavigate();
   const [showUserPopup, setShowUserPopup] = useState(false);
   const userCircleRef = useRef(null);
@@ -37,7 +37,7 @@ const Header = ({ showAdmin = true, showRegister = true, showEmployee = false, s
     <div className="login-header">
       <div className="header-logo-title">
         {/* Hamburger button before logo */}
-        <button className="header-hamburger" aria-label="Menu">
+        <button className="header-hamburger" aria-label="Menu" onClick={onHamburgerClick}>
           &#9776;
         </button>
         <img src={logo} alt="Logo" className="header-logo" />
@@ -45,12 +45,12 @@ const Header = ({ showAdmin = true, showRegister = true, showEmployee = false, s
       </div>
       <div className="header-buttons" style={{ display: 'flex', alignItems: 'center' }}>
         {/* Admin Portal and Register buttons are now hidden */}
-        {/* {showAdmin && (
+        {showAdmin && (
           <button className="admin-btn" onClick={() => navigate('/admin-login')}>Admin Portal</button>
         )}
         {showRegister && (
           <button className="register-btn" onClick={() => navigate('/register')}>Register</button>
-        )} */}
+        )}
         {showEmployee && (
           <button className="register-btn" onClick={() => navigate('/login')}>Employee Login</button>
         )}

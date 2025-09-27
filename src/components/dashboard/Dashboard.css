@@ -1,125 +1,165 @@
-.employee-dashboard-container {
-  width: 100%;
+/* Dashboard.css - Specific styles for the main employee dashboard */
+.dashboard-container {
   max-width: none;
   margin: 0;
-  background: #fff;
+  position: absolute;
+  top: 64px;
+  bottom: 20px;
+  right: 20px;
+  left: 220px;
   border-radius: 12px;
-  /*box-shadow: 0 2px 12px rgba(25, 118, 210, 0.09);*/
-  padding: 2rem 35px;
+  padding: 2rem 2.5rem 2.5rem 2.5rem;
+  overflow-x: hidden !important;
+  transition: left 0.3s ease;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
+
+.dashboard-container.expanded {
+  margin-left: 0px;
+}
+
+.dashboard-container.collapsed {
+  left: 76px;
+}
+
+/* Dashboard actions section - for positioning the Check In button */
+.dashboard-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+/* Dashboard subtitle - adjusted to be inline with button */
+.dashboard-subtitle {
+  color: #a57b0a;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+  text-align: left;
+  display: inline-block;
+}
+
+/* Check In button styles */
+.check-in-btn {
+  background: #a57b0a; /* Green color */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 0.98rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  padding: 0.7rem 1.5rem;
+  margin-left: auto; /* Push to the right */
+}
+
+.check-in-btn:hover {
+  background: #c9a63a;
+}
+
+.check-in-btn:disabled {
+  background: #e0e0e0;
+  color: #888;
+  cursor: not-allowed;
+}
+
+/* Check In form styles */
+.check-in-form {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex: 1;
+  margin-bottom: 0;
+  max-height: calc(100vh - 250px);
+}
+
+.dashboard-title {
+  color: #a57b0a;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.8rem;
+  margin-top: 0rem;
+  text-align: left;
+}
+
+.dashboard-subtitle {
+  color: #a57b0a;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+  text-align: left;
+  display: inline-block;
+}
+
 .employee-info {
   font-size: 1rem;
-  margin-bottom: -0.8rem;
-  margin-top: -16px;
-  color: #a57b0a;
+  margin-bottom: 1.2rem;
 }
-.employee-dashboard-content {
-  max-width: 1100px;
-  margin: 40px auto 0 auto;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-  padding: 2rem 2.5rem 2.5rem 2.5rem;
-}
-.employee-dashboard-main-content {
-  margin-left: 220px;
-  padding: 2rem 2.5rem 2.5rem 2.5rem;
+
+.dashboard-table {
   width: 100%;
-  min-height: 100vh;
-  background: #f7f9fc;
-}
-.employee-dashboard-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #fff;
-  font-size: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-  overflow: hidden;
-  border: 2px solid #a57b0a;
-}
-.table-expanded-sidebar {
-  width: calc(100vw - 200px - 48px);
-  max-width: 80%;
-  margin: 0px auto 0rem 2rem;
-}
-.table-collapsed-sidebar {
-  width: calc(100vw - 56px - 24px);
-  max-width: 96vw;
-  margin: 0px auto 0rem 0.5rem;
-}
-.parking-lot-table {
-  width: calc(100vw - 48px);
-  max-width: 80%;
-  margin: 0px auto 0rem 0rem;
+  table-layout: auto;
+  margin: 0 auto;
   border-collapse: separate;
   border-spacing: 0;
   background: #fff;
   font-size: 1rem;
-  border-radius: 12px;
+  border-radius: 3px;
   box-shadow: 0 4px 24px rgba(165, 123, 10, 0.13);
-  overflow: hidden;
   border: 2px solid #a57b0a;
 }
-.employee-dashboard-table th, .employee-dashboard-table td, .parking-lot-table th, .parking-lot-table td {
+
+.dashboard-table th, .dashboard-table td {
   padding: 0.9rem 0.7rem;
   border-bottom: 1px solid #eee;
   text-align: left;
+  word-break: break-word;
+  white-space: normal;
 }
-.employee-dashboard-table th, .parking-lot-table th {
-  background: #f3e6c2;
-  color: #1976d2;
-  font-weight: bold;
-  font-size: 1.08rem;
-}
-.parking-lot-table th {
+
+.dashboard-table th {
   background: linear-gradient(90deg, #f3e6c2 0%, #ffe9b3 100%);
   color: #a57b0a;
   font-weight: bold;
   font-size: 1.08rem;
   border-bottom: 2px solid #a57b0a;
 }
-.employee-dashboard-table td, .parking-lot-table td {
+
+.dashboard-table td {
   background: #fff;
   color: #222;
   border-bottom: 1px solid #eee;
   transition: background 0.2s;
 }
-.parking-lot-table tr:nth-child(even) td {
+
+.dashboard-table tr:nth-child(even) td {
   background: #faf7e2;
 }
-.parking-lot-table tr:hover td {
+
+.dashboard-table tr:hover td {
   background: #fffbe6;
 }
-.employee-dashboard-table th:last-child,
-.employee-dashboard-table td:last-child,
-.parking-lot-table th:last-child,
-.parking-lot-table td:last-child {
+
+.dashboard-table th:last-child,
+.dashboard-table td:last-child {
   text-align: center;
 }
-.employee-dashboard-table tr:last-child td,
-.parking-lot-table tr:last-child td {
+
+.dashboard-table tr:last-child td {
   border-bottom: none;
 }
-.employee-dashboard-table tr:nth-child(even),
-.parking-lot-table tr:nth-child(even) {
-  background: #faf7e2;
-}
-.approve-btn {
-  background: #1976d2;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 0.7rem 1.5rem;
-  font-size: 1.05rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.approve-btn:hover {
-  background: #63a4ff;
-  color: #222;
-}
+
 .lock-btn {
   background: #d32f2f;
   color: #fff;
@@ -137,14 +177,17 @@
   display: inline-block;
   text-align: center;
 }
+
 .lock-btn:hover {
   background: #b71c1c;
 }
+
 .lock-btn:disabled {
   background: #e0e0e0;
   color: #888;
   cursor: not-allowed;
 }
+
 .exit-btn {
   background: #a57b0a;
   color: #fff;
@@ -162,14 +205,35 @@
   display: inline-block;
   text-align: center;
 }
+
 .exit-btn:hover {
   background: #c9a63a;
 }
+
 .exit-btn:disabled {
   background: #e0e0e0;
   color: #888;
   cursor: not-allowed;
 }
+
+.approve-btn {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1.05rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.approve-btn:hover {
+  background: #63a4ff;
+  color: #222;
+}
+
+/* Exit popup styles */
 .exit-popup-overlay {
   position: fixed;
   top: 0;
@@ -179,6 +243,7 @@
   background: rgba(40, 30, 10, 0.45);
   z-index: 998;
 }
+
 .exit-popup-card.logo-theme {
   position: fixed;
   left: 50%;
@@ -194,6 +259,7 @@
   z-index: 999;
   text-align: left;
 }
+
 .exit-popup-close {
   position: absolute;
   top: 18px;
@@ -207,9 +273,11 @@
   z-index: 1001;
   transition: color 0.2s;
 }
+
 .exit-popup-close:hover {
   color: #d4b13a;
 }
+
 .exit-popup-title {
   font-size: 1.18rem;
   font-weight: 700;
@@ -217,24 +285,20 @@
   text-align: center;
   color: #a57b0a;
 }
+
 .exit-popup-detail {
   font-size: 1.05rem;
   margin-bottom: 0.7rem;
   color: #222;
 }
-.exit-popup-details-vertical {
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-  align-items: flex-start;
-  margin-bottom: 1.2rem;
-}
+
 .exit-popup-details-table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
   margin-bottom: 1.2rem;
 }
+
 .exit-popup-details-table td {
   padding: 0.6rem 0.7rem;
   font-size: 1.05rem;
@@ -242,17 +306,63 @@
   background: transparent;
   border: none;
 }
+
 .exit-popup-detail-label {
   color: #a57b0a;
   font-weight: bold;
   width: 50%;
   background: transparent;
 }
+
 .exit-popup-detail-value {
   color: #222;
   width: 50%;
   background: transparent;
 }
+
+.exit-popup-payment-method {
+  margin-bottom: 1.2rem;
+  display: flex;
+  margin-left: 12px;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.exit-popup-payment-dropdown {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 2px solid #a57b0a;
+  background: #fffbe6;
+  color: #a57b0a;
+  font-size: 1.05rem;
+  font-weight: bold;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.exit-popup-payment-dropdown:focus {
+  border-color: #d4b13a;
+}
+
+.exit-popup-qr-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+.exit-popup-qr-code {
+  width: 128px;
+  height: 128px;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(165, 123, 10, 0.13);
+  background: #fffbe6;
+  padding: 8px;
+}
+
 .confirm-exit-btn {
   display: block;
   margin: 1.2rem auto 0 auto;
@@ -266,84 +376,8 @@
   cursor: pointer;
   transition: background 0.2s;
 }
+
 .confirm-exit-btn:hover {
   background: #c9a63a;
   color: #222;
-}
-.exit-popup-payment-method {
-  margin-bottom: 1.2rem;
-  display: flex;
-  margin-left: 12px;
-  align-items: center;
-  gap: 0.3rem;
-}
-.exit-popup-payment-dropdown {
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  border: 2px solid #a57b0a;
-  background: #fffbe6;
-  color: #a57b0a;
-  font-size: 1.05rem;
-  font-weight: bold;
-  outline: none;
-  transition: border 0.2s;
-}
-.exit-popup-payment-dropdown:focus {
-  border-color: #d4b13a;
-}
-.exit-popup-qr-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 128px;
-  height: 128px;
-  margin: 0 auto;
-}
-.exit-popup-qr-code {
-  width: 128px;
-  height: 128px;
-  display: block;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(165, 123, 10, 0.13);
-  background: #fffbe6;
-  padding: 8px;
-}
-.exit-popup-qr-logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 40px;
-  height: 40px;
-  transform: translate(-50%, -50%);
-  border-radius: 8px;
-  background: #fffbe6;
-  box-shadow: 0 1px 4px rgba(165, 123, 10, 0.10);
-  object-fit: contain;
-  pointer-events: none;
-  display: block;
-}
-.exit-popup-qr-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin-bottom: 1.2rem;
-}
-.dashboard-title {
-  color: #a57b0a;
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 1.8rem;
-  margin-top: 0rem;
-  text-align: left;
-}
-/* New styles for dashboard subtitle */
-.dashboard-subtitle {
-  color: #a57b0a;
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin: 1.5rem 0 1rem 0;
-  text-align: left;
 }

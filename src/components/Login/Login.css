@@ -332,5 +332,5 @@
 
 /* Ensure content below header is not hidden */
 body, #root {
-  padding-top: 54px;
+  padding-top: 27px;
 }
