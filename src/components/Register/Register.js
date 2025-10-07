@@ -5,6 +5,7 @@ import parkingLot from '../../parkinglot.jpg';
 import LoadingOverlay from '../LoadingOverlay';
 import Header from '../Header';
 import logoLoading from '../../logo-loading.svg';
+import API_BASE_URL from '../../utils/apiConfig';
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -28,21 +29,68 @@ const Register = () => {
     setError('');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!form.name) {
+      setError('Invalid Name');
+      return;
+    }
+    if (!form.email) {
+      setError('Invalid Email ID');
+      return;
+    }
+    if (!parkingLotValue) {
+      setError('Invalid Parking Lot ID');
+      return;
+    }
+    if (!form.password) {
+      setError('Invalid Password');
+      return;
+    }
     if (form.password !== form.confirmPassword) {
       setError('Password mismatch');
       return;
     }
-    if (!parkingLotValue) {
-      setError('Please select a parking lot');
-      return;
-    }
     setLoading(true);
-    setTimeout(() => {
+
+    // Map parkingLotValue to parkingLotId
+    const parkingLotMap = {
+      'GNIOT Parking Lot': 2,
+      'DLF Parking': 3,
+      'Spectrum Metro Parking': 4,
+      'Candor Parking': 1,
+      'Logix Parking': 5
+    };
+    const parkingLotId = parkingLotMap[parkingLotValue] || 0;
+
+    const payload = {
+      fullName: form.name,
+      emailId: form.email,
+      parkingLotId,
+      password: form.password
+    };
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/v1/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload),
+        // credentials: 'include'
+      });
+      const text = await res.text();
       setLoading(false);
-      navigate('/login');
-    }, 1500);
+      if (res.ok && text === 'Registration Successful') {
+        navigate('/login');
+      } else {
+        setError(text);
+      }
+    } catch (err) {
+      console.log(err)
+      setLoading(false);
+      setError('Network error');
+    }
   };
 
   return (
