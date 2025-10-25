@@ -4,8 +4,8 @@ import '../Login/Login.css';
 import parkingLot from '../../parkinglot.jpg';
 import LoadingOverlay from '../LoadingOverlay';
 import Header from '../Header';
-import logoLoading from '../../logo-loading.svg';
 import API_BASE_URL from '../../utils/apiConfig';
+import Toast from '../Toast';
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -17,6 +17,7 @@ const Register = () => {
   const [parkingLotValue, setParkingLot] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [toast, setToast] = useState({ show: false, message: '', type: 'info' });
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -77,24 +78,26 @@ const Register = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(payload),
-        // credentials: 'include'
       });
       const text = await res.text();
       setLoading(false);
       if (res.ok && text === 'Registration Successful') {
-        navigate('/login');
+        setToast({ show: true, message: 'Registration Successful!', type: 'success' });
+        setTimeout(() => navigate('/login'), 1500);
       } else {
+        setToast({ show: true, message: text || 'Registration failed', type: 'error' });
         setError(text);
       }
     } catch (err) {
-      console.log(err)
       setLoading(false);
+      setToast({ show: true, message: 'Network error', type: 'error' });
       setError('Network error');
     }
   };
 
   return (
     <>
+      <Toast show={toast.show} message={toast.message} type={toast.type} onClose={() => setToast({ ...toast, show: false })} />
       <LoadingOverlay show={loading} />
       <div className="login-outer-container">
         <Header showAdmin={true} showEmployee={true} showRegister={false} />
@@ -110,8 +113,7 @@ const Register = () => {
                 <li>Affordable rates</li>
               </ul>
             </div>
-            <img src={parkingLot} alt="Parking Lot" className="login-image" style={{ display: loading ? 'none' : 'block' }} />
-            <img src={logoLoading} alt="Loading" style={{ width: 120, margin: 'auto', display: loading ? 'block' : 'none' }} />
+            <img src={parkingLot} alt="Parking Lot" className="login-image" style={{ display: 'block' }} />
           </div>
           <div className="login-form-section">
             <form className="login-form" onSubmit={handleSubmit} autoComplete="off">

@@ -10,12 +10,11 @@ const LoadingOverlay = ({ show, size = 120 }) => {
       left: 0,
       width: '100vw',
       height: '100vh',
-      background: 'rgba(255,255,255,0.7)',
+      background: 'rgba(165, 123, 10, 0.20)', // #a57b0a with very light opacity
       zIndex: 9999,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      transition: 'background 0.2s',
     }}>
       <img src={logoLoading} alt="Loading" style={{ width: size, height: size }} />
     </div>
